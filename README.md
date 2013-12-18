@@ -40,4 +40,17 @@ func main() {
     }))
 }
 ```
+### API
+
+#### wrapper.New
+
+```go
+New(tmplStr string, cb func(typ, content string))
+
+// typ "script" | "style"
+// content  "script" | "css style"
+func cb (typ, content) {
+    //blabla...
+}
+```
 
