@@ -6,13 +6,13 @@ import (
 )
 
 func main() {
-    w := wrapper.New(`{{ob}}{{.f}} {{.s}} {{.t}}{{obE}}`, func(t, c string) {
+    w := wrapper.New(`<html> {{ob "js"}} function test() { {{.f}} {{.s}} {{.t}} } {{obE}} </html>`, func(t, c string) {
         fmt.Println(t, c)
     })
 
-    fmt.Println(w.Execute(map[string]interface{}{
+    w.Execute(map[string]interface{}{
         "f": "hello",
         "s": "fis",
         "t": "wrapper",
-    }))
+    })
 }

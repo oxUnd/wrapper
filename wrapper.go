@@ -9,7 +9,7 @@ import (
 func New(s string, cb func(typ, content string)) *Wrapper {
     handle := &Wrapper{}
     handle.buffer = bytes.NewBufferString("")
-    handle.pos = 0
+    _old := 0
     handle.typ = ""
 
     buildins := map[string]interface{}{
@@ -20,12 +20,17 @@ func New(s string, cb func(typ, content string)) *Wrapper {
             } else {
 
             }
-            handle.Pos()
+
+            //old pos
+            _old = handle.GetPos()
+
             return ""
         },
         "obE": func(args ...interface{}) string {
-            _old := handle.pos
-            _new := handle.Pos()
+
+            //new pos
+            _new := handle.GetPos()
+
             content := handle.Read(_old, _new)
             typ := handle.typ
             //reset
@@ -55,13 +60,8 @@ type Wrapper struct {
 }
 
 func (w Wrapper) GetPos() int {
+    w.pos = w.buffer.Len()
     return w.pos
-}
-
-func (w Wrapper) Pos() int {
-    p := w.buffer.Len()
-    w.pos = p
-    return p
 }
 
 func (w Wrapper) Truncate(n int) {
