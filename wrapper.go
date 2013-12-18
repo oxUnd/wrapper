@@ -3,7 +3,6 @@ package wrapper
 import (
     "bytes"
     "html/template"
-    "log"
 )
 
 func New(s string, cb func(typ, content string)) *Wrapper {
@@ -18,7 +17,7 @@ func New(s string, cb func(typ, content string)) *Wrapper {
                 typ := args[0].(string)
                 handle.typ = typ
             } else {
-
+				Error("Must given one param!")
             }
 
             //old pos
@@ -46,10 +45,14 @@ func New(s string, cb func(typ, content string)) *Wrapper {
     handle.tmpl, err = template.New(`template`).Funcs(buildins).Parse(s)
 
     if err != nil {
-        log.Println("init tmplate failed!")
+        Error("initial template failed: \n" + err.Error())
     }
 
     return handle
+}
+
+func Error(msg string) {
+	panic(msg)
 }
 
 type Wrapper struct {

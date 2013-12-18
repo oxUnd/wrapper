@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-    w := wrapper.New(`<html> {{ob "js"}} function test() { {{.f}} {{.s}} {{.t}} } {{obE}} </html>`, func(t, c string) {
+    w := wrapper.New(`<html> {{ob "test"}} function test() { {{.f}} {{.s}} {{.t}} } {{obE}} </html>`, func(t, c string) {
         fmt.Println(t, c)
     })
 
