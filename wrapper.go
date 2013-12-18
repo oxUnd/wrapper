@@ -17,7 +17,7 @@ func New(s string, cb func(typ, content string)) *Wrapper {
                 typ := args[0].(string)
                 handle.typ = typ
             } else {
-				Error("Must given one param!")
+                Error("Must given one param!")
             }
 
             //old pos
@@ -52,7 +52,7 @@ func New(s string, cb func(typ, content string)) *Wrapper {
 }
 
 func Error(msg string) {
-	panic(msg)
+    panic(msg)
 }
 
 type Wrapper struct {
