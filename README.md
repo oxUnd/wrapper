@@ -29,7 +29,7 @@ import (
 )
 
 func main() {
-    w := wrapper.New(`{{ob}}{{.f}} {{.s}} {{.t}}{{obE}}`, func(t, c string) {
+    w := wrapper.New(`{{ob "script"}}{{.f}} {{.s}} {{.t}}{{obE}}`, func(t, c string) {
         fmt.Println(t, c)
     })
 
