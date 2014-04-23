@@ -4,12 +4,12 @@ A html/template Wrapper
 ### DESC
 
 ```html
-{{ob "script"}}
+{{buffer "script"}}
  //balabala...
-{{obE}}
+{{bufferEnd}}
 ```
 
-获取ob, obE中间夹着的内容, 并传给回掉函数，进行进一步的处理。
+it like `ob_start(), ob_end()` of PHP, get buffer content;
 
 ### INSTALL
 
@@ -29,7 +29,7 @@ import (
 )
 
 func main() {
-    w := wrapper.New(`{{ob "script"}}{{.f}} {{.s}} {{.t}}{{obE}}`, func(t, c string) {
+    w := wrapper.New(`{{buffer "script"}}{{.f}} {{.s}} {{.t}}{{bufferEnd}}`, func(t, c string) {
         fmt.Println(t, c)
     })
 
@@ -53,4 +53,3 @@ func cb (typ, content) {
     //blabla...
 }
 ```
-
